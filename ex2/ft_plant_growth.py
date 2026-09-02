@@ -55,6 +55,5 @@ def main() -> None:
     rose.simulate_week()
 
 
-
 if __name__ == "__main__":
     main()
