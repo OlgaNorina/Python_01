@@ -14,23 +14,29 @@ class Plant:
     def age(self) -> None:
         self.days_old += 1
 
-    def grow(self, weather: str) -> None:
+    def grow(self, weather: str, name: str) -> None:
         factor: float = 1.0
 
-        if weather == "Sunny":
+        if weather == "Sunny" and name == "Rose":
             factor = 1.05
-        elif weather == "Rainy":
+        elif weather == "Rainy" and name == "Rose":
             factor = 1.03
-        elif weather == "Cloudy":
+        elif weather == "Cloudy" and name == "Rose":
             factor = 1.02
+        elif weather == "Sunny" and name == "Cactus":
+            factor = 1.03
+        elif weather == "Rainy" and name == "Cactus":
+            factor = 1.02
+        elif weather == "Cloudy" and name == "Cactus":
+            factor = 1.01
 
         self.height = round(self.height * factor, 1)
 
-    def daily_process(self, weather: str) -> None:
+    def daily_process(self, weather: str, name: str) -> None:
         self.age()
-        self.grow(weather)
+        self.grow(weather, name)
 
-    def simulate_week(self) -> None:
+    def simulate_week(self, name: str) -> None:
         start_height: float = self.height
         weather_options: list[str] = ["Sunny", "Rainy", "Cloudy"]
         indices_range = range(3)
@@ -40,7 +46,7 @@ class Plant:
             index: int = indices_range[random_imitation % 3]
             current_weather: str = weather_options[index]
             print(f"== Day {day} in {current_weather} weather ==")
-            self.daily_process(current_weather)
+            self.daily_process(current_weather, name)
             self.show()
 
         progress: float = self.height - start_height
@@ -50,9 +56,14 @@ class Plant:
 def main() -> None:
     print("=== Garden Plant Growth ===")
 
-    rose: Plant = Plant("Rose", 25.0, 30)
+    rose: Plant = Plant("Rose", 15.0, 60)
     rose.show()
-    rose.simulate_week()
+    rose.simulate_week("Rose")
+
+    print("\n=== Garden Plant Growth ===")
+    cactus: Plant = Plant("Cactus", 10.5, 300)
+    cactus.show()
+    cactus.simulate_week("Cactus")
 
 
 if __name__ == "__main__":
