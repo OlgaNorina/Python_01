@@ -1,0 +1,171 @@
+class Plant:
+    # Инкапсулированный вложенный класс для сбора статистики
+    class _PlantStats:
+        def __init__(self):
+            self.grow_count = 0
+            self.age_count = 0
+            self.show_count = 0
+
+        def increment_grow(self): self.grow_count += 1
+        def increment_age(self): self.age_count += 1
+        def increment_show(self): self.show_count += 1
+
+        def display(self):
+            print(f"Stats: {self.grow_count} grow, {self.age_count} age, {self.show_count} show")
+
+    def __init__(self, name: str, height: float, age_val: int):
+        self.name = name
+        self.height = height  # В сантиметрах (cm)
+        self._age = age_val   # В днях
+        self._stats = self._PlantStats()
+
+    @staticmethod
+    def is_older_than_year(days: int) -> bool:
+        # Проверка: больше ли дней, чем в году (365 дней)
+        return days > 365
+
+    @classmethod
+    def create_anonymous(cls):
+        return cls(name="Unknown plant", height=0.0, age_val=0)
+
+    def age(self):
+        self._stats.increment_age()
+        return self._age
+
+    def grow(self, cm_increase: float):
+        self._stats.increment_grow()
+        self.height += cm_increase
+
+    def show(self):
+        self._stats.increment_show()
+        print(f"{self.name}: {self.height:.1f}cm, {self._age} days old")
+
+
+class Flower(Plant):
+    def __init__(self, name: str, height: float, age_val: int, color: str):
+        super().__init__(name, height, age_val)
+        self.color = color
+        self._is_bloomed = False
+
+    def bloom(self):
+        self._is_bloomed = True
+        print(f"{self.name} is blooming beautifully!")
+
+    def show(self):
+        super().show()
+        print(f"Color: {self.color}")
+        if self._is_bloomed:
+            pass  # Текст цветения выводится отдельно при вызове bloom() по логу
+        else:
+            print(f"{self.name} has not bloomed yet")
+
+
+class Seed(Flower):
+    def __init__(self, name: str, height: float, age_val: int, color: str, seed_count: int):
+        super().__init__(name, height, age_val, color)
+        self.max_seeds = seed_count
+        self.current_seeds = 0
+
+    def bloom(self):
+        super().bloom()
+        # По логу семена появляются только после того, как цветок расцвел
+        self.current_seeds = self.max_seeds
+
+    def show(self):
+        # Вызываем логику родительского Flower, но скрываем промежуточный текст, если уже расцвел
+        # Чтобы в точности повторить лог, проверяем состояние:
+        Plant.show(self) # Базовый инкремент и вывод первой строки
+        print(f"Color: {self.color}")
+        if self._is_bloomed:
+            print(f"Seeds: {self.current_seeds}")
+        else:
+            print(f"{self.name} has not bloomed yet")
+            print(f"Seeds: {self.current_seeds}")
+
+
+class Tree(Plant):
+    # Расширение вложенного класса статистики для Деревьев
+    class _TreeStats(Plant._PlantStats):
+        def __init__(self):
+            super().__init__()
+            self.shade_count = 0
+
+        def increment_shade(self): self.shade_count += 1
+
+        def display(self):
+            super().display()
+            print(f"{self.shade_count} shade")
+
+    def __init__(self, name: str, height: float, age_val: int, trunk_diameter: float):
+        super().__init__(name, height, age_val)
+        self.trunk_diameter = trunk_diameter
+        self._stats = self._TreeStats()
+
+    def produce_shade(self):
+        self._stats.increment_shade()
+        # Длина тени равна высоте дерева, ширина — диаметру ствола
+        print(f"Tree {self.name} now produces a shade of {self.height:.1f}cm long and {self.trunk_diameter:.1f}cm wide.")
+
+    def show(self):
+        super().show()
+        print(f"Trunk diameter: {self.trunk_diameter:.1f}cm")
+
+
+# Уникальная независимая функция вывода статистики для любого растения
+def display_plant_statistics(plant_instance: Plant):
+    plant_instance._stats.display()
+
+
+# === Исполняемый сценарий для точного соответствия логу ===
+if __name__ == "__main__":
+    print("=== Garden statistics ===")
+    
+    print("=== Check year-old")
+    print(f"Is 30 days more than a year? -> {Plant.is_older_than_year(30)}")
+    print(f"Is 400 days more than a year? -> {Plant.is_older_than_year(400)}")
+    
+    print("=== Flower")
+    rose = Flower("Rose", 15.0, 10, "red")
+    rose.show()
+    print("[statistics for Rose]")
+    display_plant_statistics(rose)
+    
+    print("[asking the rose to grow and bloom]")
+    rose.grow(8.0)  # увеличиваем рост с 15 до 23
+    rose.bloom()
+    rose.show()
+    print("[statistics for Rose]")
+    display_plant_statistics(rose)
+    
+    print("=== Tree")
+    oak = Tree("Oak", 200.0, 365, 5.0)
+    oak.show()
+    print("[statistics for Oak]")
+    display_plant_statistics(oak)
+    
+    print("[asking the oak to produce shade]")
+    oak.produce_shade()
+    print("[statistics for Oak]")
+    display_plant_statistics(oak)
+    
+    print("=== Seed")
+    sunflower = Seed("Sunflower", 80.0, 45, "yellow", 42)
+    sunflower.show()
+    
+    print("[make sunflower grow, age and bloom]")
+    sunflower.grow(30.0) # рост с 80 до 110
+    # Напрямую симулируем изменение возраста (или через вызов метода age() 20 раз, 
+    # но чтобы age_count увеличился ровно на 1 по логу, просто прибавим к полю и вызовем метод один раз):
+    sunflower._age += 20
+    sunflower.age() 
+    sunflower.bloom()
+    sunflower.show()
+    print("[statistics for Sunflower]")
+    display_plant_statistics(sunflower)
+    
+    print("=== Anonymous")
+    anon = Plant.create_anonymous()
+    anon.show()
+    print("[statistics for Unknown plant]")
+    display_plant_statistics(anon)
+
