@@ -20,9 +20,9 @@ class Plant:
         self._stats = self._PlantStats()
 
     @staticmethod
-    def is_older_than_year(days: int) -> bool:
+    def is_older_than_year(age_days: int) -> bool:
         # Проверка: больше ли дней, чем в году (365 дней)
-        return days > 365
+        return age_days > 365
 
     @classmethod
     def create_anonymous(cls):
@@ -38,7 +38,7 @@ class Plant:
 
     def show(self):
         self._stats.increment_show()
-        print(f"{self.name}: {self.height:.1f}cm, {self._age} days old")
+        print(f"{self.name}: {self.height:.1f}cm, {self._age} age_days old")
 
 
 class Flower(Plant):
@@ -121,8 +121,8 @@ if __name__ == "__main__":
     print("=== Garden statistics ===")
     
     print("=== Check year-old")
-    print(f"Is 30 days more than a year? -> {Plant.is_older_than_year(30)}")
-    print(f"Is 400 days more than a year? -> {Plant.is_older_than_year(400)}")
+    print(f"Is 30 age_days more than a year? -> {Plant.is_older_than_year(30)}")
+    print(f"Is 400 age_days more than a year? -> {Plant.is_older_than_year(400)}")
     
     print("=== Flower")
     rose = Flower("Rose", 15.0, 10, "red")

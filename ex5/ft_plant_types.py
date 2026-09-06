@@ -2,19 +2,19 @@ class Plant:
     
     name: str
     height: float
-    days: int
+    age_days: int
 
-    def __init__(self, name: str, height: float, days: int) -> None:
+    def __init__(self, name: str, height: float, age_days: int) -> None:
         self.name = name
         self.height = height
-        self.days = days
+        self.age_days = age_days
 
 
     def show(self) -> None:
-        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.days} days old")
+        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.age_days} age_days old")
 
     def age(self) -> None:
-        self.days += 1
+        self.age_days += 1
 
     def grow(self) -> None:
         self.height += 2.1
@@ -24,8 +24,8 @@ class Flower(Plant):
     color: str
     is_blomint: bool
 
-    def __init__(self, name: str, height: float, days: int, color: str) -> None:
-        super().__init__(name, height, days)
+    def __init__(self, name: str, height: float, age_days: int, color: str) -> None:
+        super().__init__(name, height, age_days)
         self.color = color
         self.is_blooming = False
 
@@ -49,8 +49,8 @@ class Tree(Plant):
     trunk_diam: float
     is_shade: bool
 
-    def __init__(self, name: str, height: float, days: int, trunk_diam: float) -> None:
-        super().__init__(name, height, days)
+    def __init__(self, name: str, height: float, age_days: int, trunk_diam: float) -> None:
+        super().__init__(name, height, age_days)
         self.trunk_diam = trunk_diam
         self.is_shade = False
 
@@ -73,17 +73,17 @@ class Vegetable(Plant):
     harv_season: str
     nutrit_val: int
 
-    def __init__(self, name: str, height: float, days: int, harv_season: str) -> None:
+    def __init__(self, name: str, height: float, age_days: int, harv_season: str) -> None:
         self.harv_season = harv_season
         self.nutrit_val = 0
-        super().__init__(name, height, days)
+        super().__init__(name, height, age_days)
 
 
     def show(self) -> None:
         super().show()
         print(f" Harvest season: {self.harv_season}\n Nutritional value: {self.nutrit_val}")
         if self.nutrit_val == 0:
-            print(f"[make {self.name.lower()} grow and age for 20 days]")
+            print(f"[make {self.name.lower()} grow and age for 20 age_days]")
 
     def grow_nutrit(self, period: int) -> None:
         for old in range(1, period + 1):

@@ -5,30 +5,30 @@ class Plant:
     """Represents a plant capable of growing and aging over time."""
     name: str
     height: float
-    age_days: int
+    age_age_days: int
 
-    def __init__(self, name: str, height: float, age_days: int) -> None:
+    def __init__(self, name: str, height: float, age_age_days: int) -> None:
         """Initialize a new plant instance.
 
         Args:
             name (str): The common name of the plant.
             height (float): The current height of the plant in cm.
-            age_days (int): The current age of the plant in days.
+            age_age_days (int): The current age of the plant in age_days.
         """
         self.name = name
         self.height = height
-        self.age_days = age_days
+        self.age_age_days = age_age_days
 
     def show(self) -> None:
         """Display the formatted plant information to the console."""
         print(
                 f"{self.name.capitalize()}: "
-                f"{self.height:.1f}cm, {self.age_days} days old"
+                f"{self.height:.1f}cm, {self.age_age_days} age_days old"
                 )
 
     def age(self) -> None:
         """Advance the plant's age by one day."""
-        self.age_days += 1
+        self.age_age_days += 1
 
     def grow(self, weather: str) -> None:
         """Calculate and update plant growth based on weather conditions.

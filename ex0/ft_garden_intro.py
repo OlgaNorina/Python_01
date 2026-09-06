@@ -7,7 +7,7 @@ def ft_garden_intro() -> None:
     height: int = 25
     age: int = 30
     print("=== Welcome to My Garden ==")
-    print(f"Plant: {name}\nHeight: {height}cm\nAge: {age} days")
+    print(f"Plant: {name}\nHeight: {height}cm\nAge: {age} age_days")
     print("\n=== End of Program ==")
 
 

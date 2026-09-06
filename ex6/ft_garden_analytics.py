@@ -3,11 +3,11 @@ class Plant:
     Args:
             name: plant name
             height: plant height in cm
-            age_days: plant days"""
+            age_age_days: plant age_days"""
     
     name: str
     height: float
-    age_days: int
+    age_age_days: int
 
     class _PlantStats:
         """Nested class for statistics"""
@@ -22,26 +22,26 @@ class Plant:
             self.show_stat = 0
 
 
-    def __init__(self, name: str, height: float, age_days: int) -> None:
+    def __init__(self, name: str, height: float, age_age_days: int) -> None:
         self.name = name
         self.height = height
-        self.age_days = age_days
+        self.age_age_days = age_age_days
 
     @staticmethod
-    def is_older_than_year(age_days: int) -> bool:
-        return age_days > 365
+    def is_older_than_year(age_age_days: int) -> bool:
+        return age_age_days > 365
 
     @classmethod
     def create_anonymous(cls):
-        return cls(name = "Unknown plant", height = 0.0, age_days = 0)
+        return cls(name = "Unknown plant", height = 0.0, age_age_days = 0)
 
     def show(self) -> None:
         self.show_stat += 1
-        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.age_days} days old")
+        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.age_age_days} age_days old")
 
     def age(self) -> None:
         self.age_stat += 1
-        self.days += 1
+        self.age_days += 1
 
     def grow(self, increase: int) -> None:
         self.grow_stat += 1
@@ -54,8 +54,8 @@ class Flower(Plant):
     color: str
     is_blomint: bool
 
-    def __init__(self, name: str, height: float, days: int, color: str) -> None:
-        super().__init__(name, height, days)
+    def __init__(self, name: str, height: float, age_days: int, color: str) -> None:
+        super().__init__(name, height, age_days)
         self.color = color
         self.is_blooming = False
 
@@ -77,8 +77,8 @@ class Tree(Plant):
     trunk_diam: float
     is_shade: bool
 
-    def __init__(self, name: str, height: float, days: int, trunk_diam: float) -> None:
-        super().__init__(name, height, days)
+    def __init__(self, name: str, height: float, age_days: int, trunk_diam: float) -> None:
+        super().__init__(name, height, age_days)
         self.trunk_diam = trunk_diam
         self.is_shade = False
 
@@ -101,17 +101,17 @@ class Vegetable(Plant):
     harv_season: str
     nutrit_val: int
 
-    def __init__(self, name: str, height: float, days: int, harv_season: str) -> None:
+    def __init__(self, name: str, height: float, age_days: int, harv_season: str) -> None:
         self.harv_season = harv_season
         self.nutrit_val = 0
-        super().__init__(name, height, days)
+        super().__init__(name, height, age_days)
 
 
     def show(self) -> None:
         super().show()
         print(f" Harvest season: {self.harv_season}\n Nutritional value: {self.nutrit_val}")
         if self.nutrit_val == 0:
-            print(f"[make {self.name.lower()} grow and age for 20 days]")
+            print(f"[make {self.name.lower()} grow and age for 20 age_days]")
 
     def grow_nutrit(self, period: int) -> None:
         for old in range(1, period + 1):
@@ -125,8 +125,8 @@ class Seed(Flower):
     current_seeds: int
     max_seeds: int
 
-    def __init__(self, name: str, height: float, age_days: int, color: str, seed_count: int) -> None:
-        super().__init__(name, height, age_days, color)
+    def __init__(self, name: str, height: float, age_age_days: int, color: str, seed_count: int) -> None:
+        super().__init__(name, height, age_age_days, color)
         self.current_seeds = 0
         self.max_seeds = seed_count
 
@@ -145,8 +145,8 @@ def get_statistics(self) -> None:
 if __name__ == "__main__":
     print("=== Garden statistics ===")
     print("=== Check year-old")
-    print(f"Is 30 days more than a year? -> {Plant.is_older_than_year(30)}")
-    print(f"Is 400 days more than a year? -> {Plant.is_older_than_year(400)}")
+    print(f"Is 30 age_days more than a year? -> {Plant.is_older_than_year(30)}")
+    print(f"Is 400 age_days more than a year? -> {Plant.is_older_than_year(400)}")
 
     print("\n=== Flower")
 
