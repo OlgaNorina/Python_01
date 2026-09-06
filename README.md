@@ -35,3 +35,6 @@ Encapsulation is one of the four core pillars of Object-Oriented Programming (OO
 ## 4. Abstraction (Абстракция)
 **What it means:** Hiding complex background logic and showing only the essential features to the user. It reduces complexity by letting you interact with a simple interface.
 **In garden:** Think of your main program loop. When you run plant.simulate_day(), you don't need to see or care about the math, the if/else checks for water levels, or the data updates happening under the hood. You just press the "simulate" button, and it works. The complexity is abstracted away.
+
+
+https://correction-page.vercel.app/
