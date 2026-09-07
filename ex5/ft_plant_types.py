@@ -12,8 +12,8 @@ class Plant:
 
         Args:
             name (str): The common name of the plant.
-            height (float): The starting height in cm (validated safely).
-            age_days (int): The starting age in days (validated safely).
+            height (float): The starting height in cm.
+            age_days (int): The starting age in days.
         """
         self.name = name
         self.height = height
