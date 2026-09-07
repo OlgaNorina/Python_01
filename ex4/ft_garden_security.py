@@ -14,7 +14,9 @@ class Plant:
         Args:
             name (str): The common name of the plant.
             height (float): The starting height in cm (validated safely).
-            age_age_days (int): The starting age in days (validated safely).
+            age_days (int): The starting age in days (validated safely).
+            is_new (bool): A flag that is True during initial creation to prevent validation 
+            success logs from printing prematurely. 
         """
         self.name = name
         self._height = 0.0
@@ -87,8 +89,9 @@ class Plant:
             )
 
 if __name__ == "__main__":
-    print("=== Garden Security System ===")
-
+    print("=== Garden Security System ===\n")
+    
+    print("=== Rose ===")
     rose = Plant("rose", 15.0, 10)
     print("Plant created: ", end = "")
     rose.show()
@@ -100,6 +103,14 @@ if __name__ == "__main__":
     rose.set_age(-5)
     print("\nCurrent state: ", end = "")
     rose.show()
-    print("\n")
     
+    print("\n=== Sunflower ===")
     sunflower = Plant("sunflower", 70.0, -60)
+    print("Current state: ", end = "")
+    sunflower.show()
+    sunflower.set_age(60)
+    print("Current state: ", end = "")
+    sunflower.show()
+    
+    print("\n=== Narcissus ===")
+    Narcissus = Plant("sunflower", -70.0, 60)

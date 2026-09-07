@@ -3,11 +3,11 @@ class Plant:
     Args:
             name: plant name
             height: plant height in cm
-            age_age_days: plant age_days"""
+            age_days: plant age_days"""
     
     name: str
     height: float
-    age_age_days: int
+    age_days: int
 
     class _PlantStats:
         """Nested class for statistics"""
@@ -22,22 +22,22 @@ class Plant:
             self.show_stat = 0
 
 
-    def __init__(self, name: str, height: float, age_age_days: int) -> None:
+    def __init__(self, name: str, height: float, age_days: int) -> None:
         self.name = name
         self.height = height
-        self.age_age_days = age_age_days
+        self.age_days = age_days
 
     @staticmethod
-    def is_older_than_year(age_age_days: int) -> bool:
-        return age_age_days > 365
+    def is_older_than_year(age_days: int) -> bool:
+        return age_days > 365
 
     @classmethod
     def create_anonymous(cls):
-        return cls(name = "Unknown plant", height = 0.0, age_age_days = 0)
+        return cls(name = "Unknown plant", height = 0.0, age_days = 0)
 
     def show(self) -> None:
         self.show_stat += 1
-        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.age_age_days} age_days old")
+        print(f"{self.name.capitalize()}: {self.height:.1f}cm, {self.age_days} age_days old")
 
     def age(self) -> None:
         self.age_stat += 1
@@ -125,8 +125,8 @@ class Seed(Flower):
     current_seeds: int
     max_seeds: int
 
-    def __init__(self, name: str, height: float, age_age_days: int, color: str, seed_count: int) -> None:
-        super().__init__(name, height, age_age_days, color)
+    def __init__(self, name: str, height: float, age_days: int, color: str, seed_count: int) -> None:
+        super().__init__(name, height, age_days, color)
         self.current_seeds = 0
         self.max_seeds = seed_count
 
