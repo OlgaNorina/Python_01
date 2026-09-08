@@ -12,7 +12,7 @@ class Plant:
         Args:
             name (str): The common name of the plant
             height (int): The current height of the plant in cm
-            age (int): The age of the plant in age_days
+            age (int): The age of the plant in days
         """
         self.name = name
         self.height = height
@@ -20,7 +20,7 @@ class Plant:
 
     def show(self) -> None:
         """Display the formatted plant information to the console."""
-        print(f"{self.name}: {self.height}cm, {self.age} age_days old")
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
 
 
 def main() -> None:

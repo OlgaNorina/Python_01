@@ -38,11 +38,11 @@ class Plant:
         """
         factor: float = 1.0
 
-        if weather == "Sunny" and self.name == "Rose":
+        if weather == "Sunny" and self.name == "Tulpan":
             factor = 1.05
-        elif weather == "Rainy" and self.name == "Rose":
+        elif weather == "Rainy" and self.name == "Tulpan":
             factor = 1.03
-        elif weather == "Cloudy" and self.name == "Rose":
+        elif weather == "Cloudy" and self.name == "Tulpan":
             factor = 1.02
         elif weather == "Sunny" and self.name == "Cactus":
             factor = 1.03
@@ -84,9 +84,9 @@ def main() -> None:
     """Execute the simulation registry for multiple plant types."""
     print("=== Garden Plant Growth ===")
 
-    rose = Plant("Rose", 25.0, 30)
-    rose.show()
-    rose.weekly_process()
+    tulpan = Plant("Tulpan", 25.0, 30)
+    tulpan.show()
+    tulpan.weekly_process()
 
     print("\n=== Garden Plant Growth ===")
     cactus = Plant("Cactus", 10.5, 300)

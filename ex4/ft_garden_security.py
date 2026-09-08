@@ -1,13 +1,13 @@
-"""Module for managing garden plant properties with safe setters and getters."""
+"""Module for managing garden plant properties safety."""
 
 
 class Plant:
-    """Represents a garden plant with encapsulated attributes and validators."""
+    """Represents a garden plant with encapsulated attributes."""
     name: str
     _height: float
     _age_days: int
     is_new: bool
-     
+
     def __init__(self, name: str, height: float, age_days: int) -> None:
         """Initialize a new plant instance and apply validation setters.
 
@@ -15,8 +15,7 @@ class Plant:
             name (str): The common name of the plant.
             height (float): The starting height in cm (validated safely).
             age_days (int): The starting age in days (validated safely).
-            is_new (bool): A flag that is True during initial creation to prevent validation 
-            success logs from printing prematurely. 
+            is_new (bool): A flag that is True during initial creation.
         """
         self.name = name
         self._height = 0.0
@@ -25,7 +24,7 @@ class Plant:
 
         self.set_height(height)
         self.set_age(age_days)
-        
+
     def get_height(self) -> float:
         """Retrieve the current encapsulated height of the plant.
 
@@ -51,11 +50,11 @@ class Plant:
         if value < 0:
             print(f"{self.name.capitalize()}: Error, height can't be negative")
             if not self.is_new:
-                print(f"Age update rejected")
+                print("Age update rejected")
         else:
             self._height = float(value)
             if not self.is_new:
-                print(f"Height updated: {self._height}")
+                print(f"Height updated: {self._height:.1f}cm")
 
     def set_age(self, value: int) -> None:
         """Validate and update the plant's age safely.
@@ -66,11 +65,11 @@ class Plant:
         if value < 0:
             print(f"{self.name.capitalize()}: Error, age can't be negative")
             if not self.is_new:
-                print(f"Age update rejected")
+                print("Age update rejected")
         else:
             self._age_days = int(value)
             if not self.is_new:
-                print(f"Age updated: {self._age_days} age days")
+                print(f"Age updated: {self._age_days} days")
         self.is_new = False
 
     def age(self) -> None:
@@ -88,12 +87,12 @@ class Plant:
             f"{self._height:.1f}cm, {self._age_days} days old"
             )
 
+
 if __name__ == "__main__":
     print("=== Garden Security System ===\n")
-    
     print("=== Rose ===")
     rose = Plant("rose", 15.0, 10)
-    print("Plant created: ", end = "")
+    print("Plant created: ", end="")
     rose.show()
     print("\n")
     rose.set_height(25.0)
@@ -101,16 +100,16 @@ if __name__ == "__main__":
     print("\n")
     rose.set_height(-10)
     rose.set_age(-5)
-    print("\nCurrent state: ", end = "")
+    print("\nCurrent state: ", end="")
     rose.show()
-    
+
     print("\n=== Sunflower ===")
     sunflower = Plant("sunflower", 70.0, -60)
-    print("Current state: ", end = "")
+    print("Current state: ", end="")
     sunflower.show()
     sunflower.set_age(60)
-    print("Current state: ", end = "")
+    print("Current state: ", end="")
     sunflower.show()
-    
+
     print("\n=== Narcissus ===")
     Narcissus = Plant("sunflower", -70.0, 60)
